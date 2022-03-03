@@ -1,3 +1,4 @@
+~!/bin/bash
 #SBATCH -J Deeplexicon   # Job Name
 #SBATCH -n 1                      # Number of  Nodes to use
 #SBATCH --gres=gpu
