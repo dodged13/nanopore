@@ -1,0 +1,19 @@
+#SBATCH -J Deeplexicon   # Job Name
+#SBATCH -n 1                      # Number of  Nodes to use
+#SBATCH --gres=gpu
+#SBATCH -o deeplexicon.out           # Output file name
+#SBATCH -e deeplexicon.err           # Error file name
+#SBATCH -p gpu                # Partition to run on
+#SBATCH -t 72:00:00
+
+module purge
+module load gcc/5.2.0
+module load cuda/10.1.168
+module load python/anaconda/4.6/miniconda/3.7
+
+source activate /home/591608/.conda/envs/demulx
+export PATH=/home/591608/.conda/envs/demulx/bin:${PATH}
+
+conda activate demulx
+python3 ~/deeplexicon/deeplexicon_multi.py dmux -p ~/KatsPractical_nanopore/treatment/20211202_1636_MC-112426_FAR28174_de6c092f/fast5_pass/  -m ~/deeplexicon/models/resnet20-final.h5 > treatment.tsv
+ 
